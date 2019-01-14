@@ -1,7 +1,7 @@
 <template>
 	<div class="stocks">
-		<div v-for = "stock in stocksList">
-        	<appStocks :name = "stock.name" :price = "stock.currentPrice"></appStocks>
+		<div v-for = "(stock, i) in stocksList">
+        	<appStocks v-on:purchase="purchase" :name = "stock.name" :price = "stock.currentPrice" :id = "i"></appStocks>
     	</div>
 	</div>
 </template>
@@ -12,6 +12,11 @@
 	    components: {
 	        appStocks : stock,
 	    },
-	    props: ["stocksList"]
+	    props: ["stocksList"],
+	    methods:{
+        	purchase: function(e){
+        		this.$emit('purchase', e);
+        	}
+        }
     }
 </script>

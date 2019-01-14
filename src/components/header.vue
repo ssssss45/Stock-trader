@@ -6,7 +6,7 @@
         	
         	<div class = "right-menu-items funds">Funds: $ {{ money }}</div>
         	<div class = "right-menu-items">Save & load</div>
-        	<div class = "right-menu-items">End Day</div>
+        	<a class = "right-menu-items new-day" @click = "newDay">End Day</a>
         </div>
 </template>
 
@@ -15,6 +15,11 @@
 	    components: {
 	    },
 	    props:["money"],
+	    methods:{
+	    	newDay : function(){
+	    		this.$emit('newDay');
+	    	}
+	    }
     }
 </script>
 
@@ -51,5 +56,9 @@
 
 	.funds{
 		font-weight: bold;
+	}
+
+	.new-day{
+		cursor: pointer;
 	}
 </style>

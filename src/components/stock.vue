@@ -10,8 +10,8 @@
         	
         	</div>
         	<div class="stock-content panel-body">
-        		<input type="number" min="0" step="1" placeholder="Quantity" class="stock-input form-control"></input>
-        		<button class="stock-buy-button btn btn-success">Buy</button>
+        		<input type="number" min="0" step="1" placeholder="Quantity" class="stock-input form-control" v-model = "amount"></input>
+        		<button class="stock-buy-button btn btn-success" @click="purchase">Buy</button>
         	</div>
         </div>
     
@@ -21,8 +21,22 @@
     export default {
 	    components: {
 	    },
-	    props: ["name", "price"]
-    }
+		data: function(){
+			return {
+				amount : undefined
+			}
+		},
+	    props: ["name", "price", "id"],
+    methods:{
+    		purchase: function(){
+    			this.$emit('purchase', {
+    				id: this.id,
+    				amount: this.amount
+    			});
+    			this.text = undefined;
+    		}
+	    }
+	}
 </script>
 
 <style>
