@@ -8,9 +8,9 @@
         	<div class = "right-menu-items dropdown">
         		<span>Save & load</span>
         		<div class="dropdown-content">
-					<div>Save</div>
+					<div @click = "save">Save</div>
 					<br>
-					<div>Load</div>
+					<div @click = "load">Load</div>
 				</div>
         	</div>
         	<div class = "right-menu-items new-day" @click = "newDay">End Day</div>
@@ -25,7 +25,13 @@
 	    methods:{
 	    	newDay : function(){
 	    		this.$emit('newDay');
-	    	}
+	    	},
+	    	save: function(){
+	    		this.$emit('save');
+		    },
+		    load: function(){
+	    		this.$emit('load');
+		    }
 	    }
     }
 </script>
