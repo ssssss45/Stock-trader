@@ -78,9 +78,15 @@
         		}
         		else
         		{
-        			money -= cost;
-        			this.money =  numberWithCommas(money);
-        			this.stocksList[e.id].owned += Number(e.amount);
+        			if (e.amount < 0)
+        			{
+        				alert("Can't buy negative number of stocks!");
+        			}
+        			{
+        				money -= cost;
+	        			this.money =  numberWithCommas(money);
+	        			this.stocksList[e.id].owned += Number(e.amount);
+	        		}
         		}
         	},
         	sell: function(e){
@@ -90,9 +96,16 @@
         		}
         		else
         		{
-        			money += e.amount * this.stocksList[e.id].currentPrice;
-        			this.money =  numberWithCommas(money);
-        			this.stocksList[e.id].owned -= Number(e.amount);
+        			if (e.amount < 0)
+        			{
+        				alert("Can't sell negative number of stocks!");
+        			}
+        			else
+        			{
+        				money += e.amount * this.stocksList[e.id].currentPrice;
+	        			this.money =  numberWithCommas(money);
+	        			this.stocksList[e.id].owned -= Number(e.amount);	
+        			}
         		}
         	},
         	save: function(){
