@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <appHeader v-on:newDay="newDay" :money = "money"></appHeader>
-        <router-view v-on:purchase="purchase" :money = "money" :stocksList = "stocksList"></router-view>
+        <router-view v-on:purchase="purchase" v-on:sell="sell" :money = "money" :stocksList = "stocksList"></router-view>
     </div>
 </template>
 
@@ -77,7 +77,19 @@
         		{
         			money -= cost;
         			this.money =  numberWithCommas(money);
-        			this.stocksList[e.id].owned += e.amount;
+        			this.stocksList[e.id].owned += Number(e.amount);
+        		}
+        	},
+        	sell: function(e){
+        		if (e.amount > this.stocksList[e.id])
+        		{
+        			alert("You don't have enough stocks!");
+        		}
+        		else
+        		{
+        			money += e.amount * this.stocksList[e.id].currentPrice;
+        			this.money =  numberWithCommas(money);
+        			this.stocksList[e.id].owned -= Number(e.amount);
         		}
         	}
         },

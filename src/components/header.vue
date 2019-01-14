@@ -5,8 +5,15 @@
         	<router-link class = "left-menu-items" to="stocks">Stocks</router-link>
         	
         	<div class = "right-menu-items funds">Funds: $ {{ money }}</div>
-        	<div class = "right-menu-items">Save & load</div>
-        	<a class = "right-menu-items new-day" @click = "newDay">End Day</a>
+        	<div class = "right-menu-items dropdown">
+        		<span>Save & load</span>
+        		<div class="dropdown-content">
+					<div>Save</div>
+					<br>
+					<div>Load</div>
+				</div>
+        	</div>
+        	<div class = "right-menu-items new-day" @click = "newDay">End Day</div>
         </div>
 </template>
 
@@ -60,5 +67,19 @@
 
 	.new-day{
 		cursor: pointer;
+	}
+
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: #f9f9f9;
+		min-width: 160px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		padding: 12px 16px;
+		z-index: 1;
+		cursor: pointer;
+	}
+	.dropdown:hover .dropdown-content {
+		display: block;
 	}
 </style>

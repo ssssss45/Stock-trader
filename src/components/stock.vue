@@ -1,18 +1,35 @@
 <template>
         <div class="stock">
-        	<div class="stock-head panel-heading">
-        	<div style = "display: inline-block;">
-        		{{name}}
+        	<div v-if = "buy" class="stock-head-buy panel-heading">
+	        	<div style = "display: inline-block;">
+	        		{{name}}
+	        	</div>
+	        	<div class = "price">
+	        		(Price: {{price}})
+	        	</div>
         	</div>
-        	<div class = "price">
-        		(Price: {{price}})
+
+        	<div v-else class="stock-head-sell panel-heading">
+	        	<div style = "display: inline-block;">
+	        		{{name}}
+	        	</div>
+	        	<div class = "price">
+	        		(Price: {{price}} | Quantity: {{quantity}})
+	        	</div>
+        	</div>
+
+        	<div v-if = "buy" class="stock-content panel-body">
+        		<input type="number" min="0" step="1" placeholder="Quantity" class="stock-input form-control" v-model = "amount"></input>
+        		<button  class="stock-buy-button btn btn-success" @click="purchase">
+        		Buy</button>
+        	</div>
+
+        	<div v-else class="stock-content panel-body">
+        		<input type="number" min="0" step="1" placeholder="Quantity" class="stock-input form-control" v-model = "amount"></input>
+        		<button class="stock-buy-button btn btn-danger" @click="sell">
+        		Sell</button>
         	</div>
         	
-        	</div>
-        	<div class="stock-content panel-body">
-        		<input type="number" min="0" step="1" placeholder="Quantity" class="stock-input form-control" v-model = "amount"></input>
-        		<button class="stock-buy-button btn btn-success" @click="purchase">Buy</button>
-        	</div>
         </div>
     
 </template>
@@ -26,10 +43,18 @@
 				amount : undefined
 			}
 		},
-	    props: ["name", "price", "id"],
+	    props: ["name", "price", "id", "buy", "quantity"],
     methods:{
     		purchase: function(){
     			this.$emit('purchase', {
+    				id: this.id,
+    				amount: this.amount
+    			});
+    			this.text = undefined;
+    		},
+
+    		sell: function(){
+    			this.$emit('sell', {
     				id: this.id,
     				amount: this.amount
     			});
@@ -55,13 +80,22 @@
 		cursor: pointer;
 	}
 
-	.stock-head{
+	.stock-head-buy{
 		width : 100%;
 
 		border-color : #ccc;
 		color: green;
 		font-weight: bold;
 		background-color: #ccffcc;
+	}
+
+	.stock-head-sell{
+		width : 100%;
+
+		border-color : #ccc;
+		color: SteelBlue;
+		font-weight: bold;
+		background-color: powderblue;
 	}
 
 	.stock-buy-button{
