@@ -4,11 +4,20 @@
         	<router-link class = "left-menu-items" to="portfolio">Portfolio</router-link>
         	<router-link class = "left-menu-items" to="stocks">Stocks</router-link>
         	
-        	<div class = "right-menu-items funds">Funds: $</div>
+        	<div class = "right-menu-items funds">Funds: $ {{ money }}</div>
         	<div class = "right-menu-items">Save & load</div>
         	<div class = "right-menu-items">End Day</div>
         </div>
 </template>
+
+<script>
+    export default {
+	    components: {
+	    },
+	    props:["money"],
+    }
+</script>
+
 <style>
 	.header{
 		width: 100%;

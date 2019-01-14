@@ -5,10 +5,18 @@
 		<br>
 		Click on 'End Day' to begin a new Day!
 		<hr>
-		<h3>Your funds: $</h3>
+		<h3>Your funds: $ {{money}}</h3>
 
 	</div>
 </template>
+
+<script>
+    export default {
+	    components: {
+	    },
+	    props:["money"],
+    }
+</script>
 
 <style>
 	.main{
@@ -18,5 +26,6 @@
 		border-width: 1px;
 		border-color: gray;
 		margin: auto;
+		padding-bottom: 30px;
 	}
 </style>
